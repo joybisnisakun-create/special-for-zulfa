@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zulfa's Universe | From Joy</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,600&display=swap" rel="stylesheet">
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onclick="createParticle(event)">
+
+    <!-- Background Elements -->
+    <div id="heart-container"></div>
+    <audio id="myAudio" loop>
+        <source src="blackbird.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- SCREEN 1: ENTRANCE -->
+    <div id="screen-entrance" class="screen active">
+        <div class="luxury-border anim-float">
+            <div class="inner-frame">
+                <h1 class="sacramento gold-text">Zulfa's Universe</h1>
+                <div class="divider-luxe"><span>✦</span></div>
+                <p class="elegant-text">A Small Gift for My Favorite Soul</p>
+                <button class="gold-button-luxe" onclick="startApp()">Unlock Happiness ✨</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: INTRO (PHOTO & NAME) -->
+    <div id="screen-intro" class="screen">
+        <div class="elegant-card anim-slide-up">
+            <div class="card-glow"></div>
+            <h2 class="sacramento rose-text">Happy 21st Birthday</h2>
+            <div class="main-photo-frame">
+                <div class="photo-inner">
+                    <img src="foto1.jpeg" alt="Zulfa">
+                </div>
+            </div>
+            <h1 class="playfair name-title">Ainun Amaliya Zulfa</h1>
+            <div id="day-counter" class="gold-badge"></div>
+            <button class="next-btn-gold" onclick="nextScreen('screen-letter')">Open My Heart ➔</button>
+        </div>
+    </div>
+
+    <!-- SCREEN 3: LETTER -->
+    <div id="screen-letter" class="screen">
+        <div id="envelope-wrapper">
+            <div id="envelope-container" onclick="handleEnvelope()">
+                <div class="envelope" id="envelope">
+                    <div class="flap"></div>
+                    <div class="paper-preview">💌</div>
+                </div>
+                <p id="envelope-hint">Ketuk amplop untuk membaca pesan Joy...</p>
+            </div>
+        </div>
+
+        <div id="letter-frame" class="letter-luxury-frame hidden">
+            <div class="letter-texture"></div>
+            <div class="letter-scroll-content">
+                <div class="letter-header">
+                    <h2 class="playfair gold-text">Dearest Zulfa,</h2>
+                    <div class="date-stamp">2026</div>
+                </div>
+                <div class="text-body">
+                    <p>Selamat ulang tahun yang ke-21. Di umur yang baru ini, aku cuma ingin kamu tahu betapa berartinya kehadiranmu di hidupku.</p>
+                    <p>Terima kasih sudah jadi orang yang paling sabar dengerin ceritaku, dan terima kasih sudah mengizinkan aku jadi bagian dari harimu.</p>
+                    <p>Stay as you are, Zulfa. Dunia mungkin berisik, tapi semoga kamu selalu nemuin tenang di sini, bersamaku.</p>
+                    <p class="signature">With Love❤️, Joy</p>
+                </div>
+            </div>
+            <button class="gold-button-luxe small-btn" style="margin-top:20px" onclick="nextScreen('screen-dashboard')">Buka Dashboard</button>
+        </div>
+    </div>
+
+    <!-- SCREEN 4: DASHBOARD (PREMIUM UI) -->
+    <div id="screen-dashboard" class="screen">
+        <div class="dashboard-wrapper anim-slide-up">
+            <!-- Header Section -->
+            <div class="glass-header">
+                <div class="header-content">
+                    <div>
+                        <p class="greeting">Halo, Zulfa Cantik ❤️</p>
+                        <h3 class="playfair">Have a wonderful day!</h3>
+                    </div>
+                    <div id="live-clock" class="clock-luxe">00:00</div>
+                </div>
+                <div class="meter-info">
+                    <span>Joy's Affection Level</span>
+                    <span id="love-percent">30%</span>
+                </div>
+                <div class="meter-container"><div id="meter-fill"></div></div>
+            </div>
+
+            <!-- Main Trip Card -->
+            <div class="trip-card-luxe" onclick="openPopup('trip')">
+                <div class="trip-icon-bg">🚂</div>
+                <div class="trip-details">
+                    <span class="trip-label">NEXT ADVENTURE</span>
+                    <span class="trip-title">Jogja Trip 2026</span>
+                    <span class="trip-sub">10 Juli • 4 Hari Kita Senang Senang</span>
+                </div>
+                <div class="trip-arrow">➔</div>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="menu-grid-luxe">
+                <div class="menu-card" onclick="openPopup('reasons')">
+                    <div class="m-icon">✨</div><span>21 Reasons</span>
+                </div>
+                <div class="menu-card" onclick="openPopup('gallery')">
+                    <div class="m-icon">🖼️</div><span>Memories</span>
+                </div>
+                <div class="menu-card" onclick="openPopup('quiz')">
+                    <div class="m-icon">📝</div><span>Quiz</span>
+                </div>
+                <div class="menu-card" onclick="openPopup('meaning')">
+                    <div class="m-icon">🎶</div><span>Our Song</span>
+                </div>
+                <div class="menu-card" onclick="openPopup('promises')">
+                    <div class="m-icon">🤝</div><span>Promises</span>
+                </div>
+                <div class="menu-card" onclick="openPopup('voucher')">
+                    <div class="m-icon">🎟️</div><span>Gifts</span>
+                </div>
+            </div>
+
+            <!-- Music & Mood Footer -->
+            <div class="footer-music">
+                <div class="music-card">
+                    <div class="disc-anim">💿</div>
+                    <marquee class="music-info">Now Playing: Here, There and Everywhere - The Beatles</marquee>
+                </div>
+                <p style="font-size: 0.7rem; text-align: center; color: #888;">How are you feeling, Zulfa?</p>
+                <div class="mood-row">
+                    <button class="mood-btn" onclick="checkMood('happy')">😊</button>
+                    <button class="mood-btn" onclick="checkMood('sad')">😢</button>
+                    <button class="mood-btn accent" onclick="openPopup('support')">🫂</button>
+                </div>
+                <button class="wa-btn-luxe" onclick="sendWA()">📲 Send Love Report</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- POPUP OVERLAY SYSTEM -->
+    <div id="popup-overlay" class="popup-overlay" onclick="closePopup()">
+        <div class="popup-box-luxe" onclick="event.stopPropagation()">
+            <div id="popup-content"></div>
+            <button class="close-btn-luxe" onclick="closePopup()">✕</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
